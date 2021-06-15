@@ -4,6 +4,9 @@ FROM node:alpine
 RUN mkdir -p /app
 COPY . /app
 
+# Change working dir
+WORKDIR /app
+
 # Install NPM Modules
 RUN npm install
 
