@@ -14,15 +14,17 @@ var Editor = require("./lib/editor").Editor;
 
 var CONFIG_FILE = path.join(__dirname, "config.json");
 try {
-    var config = require(CONFIG_FILE);
+    //var config = require(CONFIG_FILE);
+    var bot_token = process.env.BOT_TOKEN;
+    var owner_id = process.env.OWNER_ID;
 } catch (e) {
     console.error("Couldn't load the configuration file, starting the wizard.\n");
     require("./lib/wizard").configWizard({ configFile: CONFIG_FILE });
     return;
 }
 
-var bot = botgram(config.authToken, { agent: utils.createAgent() });
-var owner = config.owner;
+var bot = botgram(bot_token, { agent: utils.createAgent() });
+var owner = owner_id;
 var tokens = {};
 var granted = {};
 var contexts = {};
